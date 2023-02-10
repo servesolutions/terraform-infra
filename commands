@@ -20,7 +20,7 @@ git push —all # Push all local branches to remote repository
 
 git log # Show entire git log
 
-hello
+
 # Linux Commands
 
 # Docker Commands
