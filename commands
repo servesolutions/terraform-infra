@@ -1,0 +1,25 @@
+# Git Commands
+
+git init
+git add .
+git commit -m "message"
+git remote add origin "github repo link"
+git push -u origin master
+
+git branch <branch_name> # Create new branch
+git branch -a # list all branches
+git branch -d <branch_name> # Delete a branch
+
+git checkout <branch_name> # Checkout an existing branch
+git checkout -b <new_branch> # Checkout and create a new branch with that name
+
+git merge <branch_name> # Merge changes into current branch
+
+git push <remote_URL/remote_name> <branch>
+git push —all # Push all local branches to remote repository
+
+git log # Show entire git log
+
+# Linux Commands
+
+# Docker Commands
