@@ -19,8 +19,25 @@ git push <remote_URL/remote_name> <branch>
 git push —all # Push all local branches to remote repository
 
 git log # Show entire git log
-p
+
 
 # Linux Commands
+
+sudo # performs tasks that require admin or root permissions
+pwd # lets you find the path of your current directory
+
+cd # allows you to navigate through your directories
+cd ~[username]  # goes to another user’s home directory.
+cd .. # moves to your previous directory .
+cd - # moves to your previous directory.
+
+ls # list files and directories
+ls -R # lists all the files in the subdirectories.
+ls -a  # shows hidden files in addition to the visible ones.
+ls -lh # shows the file sizes in easily readable formats, such as MB, GB, and TB.
+
+
+
+
 
 # Docker Commands
