@@ -29,7 +29,7 @@ pwd # lets you find the path of your current directory
 cd # allows you to navigate through your directories
 cd ~[username]  # goes to another user’s home directory.
 cd .. # moves to your previous directory .
-cd - # moves to your previous directory.
+cd - # moves to your last directory you were just in.
 
 ls # list files and directories
 ls -R # lists all the files in the subdirectories.
