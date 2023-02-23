@@ -46,9 +46,33 @@ clear # Clear the terminal display
 
 rm # Delete files or directories
 
+rmdir # delete empty folder
+
 df # Display disk filesystem information
 
-chmod # Command to change file permissions
+du # space file/folder takes up
+
+head # prints first ten lines of file
+
+tail # prints last ten lines
+
+diff # compares content of 2 files and displays difference
+
+chmod # modifies read write and execute permission
+
+chown # change ownership of a file
+
+jobs # displays all the running processes
+
+ping # checking whether a network or a server is reachable ping
+
+touch # creates files
+
+locate # find files -i turns off case sensitivity in database
+
+find # search files in specific folder
+
+grep # word filter in a file
 
 top # View active processes live with their system usage
 
