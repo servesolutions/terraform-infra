@@ -1,0 +1,54 @@
+# Git Commands
+
+git init
+git add .
+git commit -m "message"
+git remote add origin "github repo link"
+git push -u origin master
+
+git branch <branch_name> # Create new branch
+git branch -a # list all branches
+git branch -d <branch_name> # Delete a branch
+
+git checkout <branch_name> # Checkout an existing branch
+git checkout -b <new_branch> # Checkout and create a new branch with that name
+
+git merge <branch_name> # Merge changes into current branch
+
+git push <remote_URL/remote_name> <branch>
+git push —all # Push all local branches to remote repository
+
+git log # Show entire git log
+
+
+# Linux Commands
+
+sudo # administrative command
+pwd # current working directory
+cd # change directory\
+ls # list of files/folders in location
+cat # print files text
+cp #copy files to a diffent location
+mv # move files to different location
+mkdir # create folder
+rmdir # delete empty folder
+rm # delete files
+touch # creates files
+locate # find files -i turns off case sensitivity in database
+find # search files in specific folder
+grep # word filter in a file
+df # disk space usage
+du # space file/folder takes up
+head # prints first ten lines of file
+tail # prints last ten lines
+diff # compares content of 2 files and displays difference
+chmod # modifies read write and execute permission
+chown # change ownership of a file
+jobs # displays all the running processes
+ping # checking whether a network or a server is reachable ping [option] [hostname_or_IP_address]
+https://www.hostinger.com/tutorials/linux-commands # for the res of the commans
+
+
+
+
+# Docker Commands
