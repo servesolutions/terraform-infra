@@ -61,6 +61,7 @@ jobs:
         with:
           terraform_version: 1.0.9
           working-directory: ./network
+          command: apply
 
       - name: Terraform Init
         run: terraform init
