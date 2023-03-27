@@ -26,10 +26,10 @@ output "private_subnets-3" {
 }
 
 
-output "private_subnets-4" {
-  value       = aws_subnet.private[3].id
-  description = "The fourth private subnet"
-}
+#output "private_subnets-4" {
+  #value       = aws_subnet.private[3].id
+  #description = "The fourth private subnet"
+#}
 
 
 output "vpc_id" {
