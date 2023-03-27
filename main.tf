@@ -1,5 +1,5 @@
 module "VPC" {
-  source                              = "./network/vpc"
+  source                              = "./modules/vpc"
   region                              = var.region
   vpc_cidr                            = var.vpc_cidr
   enable_dns_support                  = var.enable_dns_support
@@ -12,7 +12,7 @@ module "VPC" {
 }
 
 module "Security" {
-  source = "./network/security"
+  source = "./modules/security"
   vpc_id = module.VPC.vpc_id
 }
 
