@@ -54,7 +54,10 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::445646923222:role/github-actions-role
           role-session-name: samplerolesession
-          aws-region: us-west-2
+          aws-region: us-west-2   
+    
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
