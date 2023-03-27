@@ -67,7 +67,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan -var region=${{ env.AWS_REGION }}
+        run: terraform plan
 
       - name: Terraform Apply
         run: terraform apply -auto-approve -var region=${{ env.AWS_REGION }}
