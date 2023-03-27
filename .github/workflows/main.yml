@@ -54,7 +54,7 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::445646923222:role/github-actions-role
           role-session-name: samplerolesession
-          aws-region: us-west-2
+          aws-region: eu-west-2
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
@@ -70,5 +70,5 @@ jobs:
         run: terraform plan
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var region=${{ env.AWS_REGION }}
+        run: terraform apply -auto-approve
        
