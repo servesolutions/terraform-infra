@@ -63,8 +63,9 @@ jobs:
           working-directory: ./terraform-infra/
           command: apply
 
-      - name: Terraform Init
-        run: terraform init
+      - name: Initialize Terraform backend
+        run: terraform init -backend-config="serves-terraform" -backend-config="key=terraform.tfstate"
+
 
       - name: Terraform Plan
         run: terraform plan
