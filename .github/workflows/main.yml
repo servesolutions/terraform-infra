@@ -64,14 +64,14 @@ jobs:
           command: apply
 
       - name: Initialize Terraform backend
-        run: terraform init -backend-config="bucket=serves-terraform" -backend-config="key=terraform.tfstate"
+        run: terraform init -input=false -backend-config="bucket=serves-terraform" -backend-config="key=terraform.tfstate"
 
 
-      - name: Terraform Plan
-        run: terraform plan
+      - name: Terraform Plan 
+        run: terraform plan -input=false
 
       - name: terraform Apply
-        run: terraform apply -auto-approve 
+        run: terraform apply -auto-approve -input=false
 
      # - name: terraform Destroy
      #   run: terraform destroy -auto-approve
