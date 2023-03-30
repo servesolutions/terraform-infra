@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ec2_instance_role" {
-  name = "ec2_instance_role"
+  name = "ec2_instance_roles"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
