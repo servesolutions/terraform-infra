@@ -64,7 +64,7 @@ jobs:
           command: apply
 
       - name: Initialize Terraform backend
-        run: terraform init -backend-config="serves-terraform" -backend-config="key=terraform.tfstate"
+        run: terraform init -backend-config="bucket=serves-terraform" -backend-config="key=terraform.tfstate"
 
 
       - name: Terraform Plan
