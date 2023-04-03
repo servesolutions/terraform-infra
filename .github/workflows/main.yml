@@ -55,7 +55,7 @@ jobs:
       #     path: ./terraform-infra
 
       - name: Terrascan
-        uses: accurics/setup-terrascan@v1
+        uses: tenable/terrascan@v1.18.0
         with: 
           path: ./terraform-infra
         
