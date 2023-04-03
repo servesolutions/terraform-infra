@@ -49,6 +49,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Testing terraform
+        run: |
+          pip install tfsec terrascan infracost
+          tfsec .
+          terrascan .
+        
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -73,6 +79,9 @@ jobs:
       - name: terraform Apply
         run: terraform apply -auto-approve -input=false
 
+      - name: Costs calculations
+        run: infracost 
+        
       - name: terraform Destroy
         run: terraform destroy -auto-approve
        
