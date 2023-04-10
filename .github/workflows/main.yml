@@ -68,9 +68,9 @@ jobs:
           aws-region: eu-west-2
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1terra
+        uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.0.9
+          terraform_version: 2.0.3
           working-directory: ./terraform-infra/
           command: apply
 
