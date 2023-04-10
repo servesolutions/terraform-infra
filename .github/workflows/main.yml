@@ -55,8 +55,9 @@ jobs:
       #     path: ./terraform-infra
 
       - name: Terrascan
-        uses: tenable/terrascan@v1.18.0
-        with: 
+        uses: accurics/terrascan@v1.7.0
+        with:
+          scan_type: "terraform" 
           path: ./terraform-infra
         
       - name: Configure AWS credentials
