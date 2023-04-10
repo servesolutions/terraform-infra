@@ -55,10 +55,10 @@ jobs:
       #     path: ./terraform-infra
 
       - name: Terrascan
-        uses: accurics/terrascan@v1.18.0/build/Dockerfile
-        with:
-          scan_type: "terraform" 
-          path: ./terraform-infra
+        uses: tenable/terrascan@v1.18.0
+        
+      - name: Run Terrascan
+        run: terrascan scan -f terraform
         
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
@@ -68,7 +68,7 @@ jobs:
           aws-region: eu-west-2
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v1terra
         with:
           terraform_version: 1.0.9
           working-directory: ./terraform-infra/
