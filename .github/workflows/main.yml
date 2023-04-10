@@ -55,7 +55,7 @@ jobs:
       #     path: ./terraform-infra
 
       - name: Terrascan
-        uses: accurics/terrascan@v1.18.0/build
+        uses: accurics/terrascan/build
         with:
           scan_type: "terraform" 
           path: ./terraform-infra
