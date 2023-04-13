@@ -49,17 +49,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-    # - name: Testing tfsec
-      #   uses: aquasecurity/tfsec-action@v1.0.3
-      #   with:
-      #     path: ./terraform-infra
-
-      - name: Terrascan
-        uses: tenable/terrascan@v1.18.0
-        
-      - name: Run Terrascan
-        run: terrascan scan -f terraform
-        
+      - name: Testing tfsec
+        uses: aquasecurity/tfsec-action@v1.0.3
+        with:
+          path: ./terraform-infra
+    
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
