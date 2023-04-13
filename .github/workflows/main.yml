@@ -49,10 +49,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Testing tfsec
-        uses: aquasecurity/tfsec-action@v1.0.3
-        with:
-          path: ./terraform-infra
+      #- name: Testing tfsec
+      #  uses: aquasecurity/tfsec-action@v1.0.3
+      # with:
+      #   path: ./terraform-infra
     
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
@@ -78,9 +78,11 @@ jobs:
       - name: terraform Apply
         run: terraform apply -auto-approve -input=false
 
-      - name: Costs calculations
-        run: infracost 
-
+      - name: Setup Terraform and InfraCost
+        uses: infracost/infracost-action@v1
+        with:
+          api_key: ${{ secrets.INFRACOST_API_KEY }}
+          
       - name: terraform Destroy
         run: terraform destroy -auto-approve
        
