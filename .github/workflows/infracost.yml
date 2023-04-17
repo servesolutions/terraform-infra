@@ -55,9 +55,9 @@ jobs:
       # Generate Infracost JSON file as the baseline.
       - name: Generate Infracost cost estimate baseline
         run: |
-          infracost breakdown --path=./terraform-infra/ \
-                              --format=json \
-                              --out-file=/tmp/infracost-base.json
+          infracost breakdown --path= ./terraform-infra/ 
+                              --format= json 
+                              --out-file= /tmp/infracost-base.json
 
       # Checkout the current PR branch so we can create a diff.
       - name: Checkout PR branch
@@ -66,11 +66,10 @@ jobs:
       # Generate an Infracost diff and save it to a JSON file.
       - name: Generate Infracost diff
         run: |
-          infracost diff --path=./terraform-infra/ \
-                          --format=json \
-                          --out-file=/tmp/infracost.json
-                          --compare-to=/tmp/infracost-base.json \
-                          
+          infracost diff --path= ./terraform-infra/ 
+                          --format= json 
+                          --compare-to= /tmp/infracost-base.json 
+                          --out-file= /tmp/infracost.json
 
       # Posts a comment to the PR using the 'update' behavior.
       # This creates a single comment and updates it. The "quietest" option.
@@ -81,8 +80,8 @@ jobs:
       # See https://www.infracost.io/docs/features/cli_commands/#comment-on-pull-requests for other options.
       - name: Post Infracost comment
         run: |
-            infracost comment github --path=/tmp/infracost.json \
-                                     --repo=servesolution/terraform-infra \
-                                     --github-token=${{secrets.token}} \
-                                     --pull-request=${{github.event.pull_request.number}} \
-                                     --behavior=update
+            infracost comment github --path= /tmp/infracost.json \
+                                     --repo= servesolution/terraform-infra \
+                                     --github-token= ${{secrets.token}} \
+                                     --pull-request= ${{github.event.pull_request.number}} \
+                                     --behavior= update
