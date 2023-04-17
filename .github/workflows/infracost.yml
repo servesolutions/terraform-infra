@@ -55,7 +55,7 @@ jobs:
       # Generate Infracost JSON file as the baseline.
       - name: Generate Infracost cost estimate baseline
         run: |
-          infracost breakdown --path=${./terraform-infra/} \
+          infracost breakdown --path=./terraform-infra/ \
                               --format=json \
                               --out-file=/tmp/infracost-base.json
 
@@ -66,7 +66,7 @@ jobs:
       # Generate an Infracost diff and save it to a JSON file.
       - name: Generate Infracost diff
         run: |
-          infracost diff --path=${./terraform-infra/} \
+          infracost diff --path=./terraform-infra/ \
                           --format=json \
                           --compare-to=/tmp/infracost-base.json \
                           --out-file=/tmp/infracost.json
