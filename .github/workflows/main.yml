@@ -23,8 +23,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-
-
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
@@ -44,22 +42,16 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-    # - name: Testing tfsec
-      #   uses: aquasecurity/tfsec-action@v1.0.3
-      #   with:
-      #     path: ./terraform-infra
-
-      - name: Terrascan
-        uses: tenable/terrascan@v1.18.0
-        
-      - name: Run Terrascan
-        run: terrascan scan -f terraform
-        
+      #- name: Testing tfsec
+      #  uses: aquasecurity/tfsec-action@v1.0.3
+      # with:
+      #   path: ./terraform-infra
+    
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -70,7 +62,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 2.0.3
+          terraform_version: 1.4.5
           working-directory: ./terraform-infra/
           command: apply
 
@@ -81,12 +73,36 @@ jobs:
       - name: Terraform Plan 
         run: terraform plan -input=false
 
-      - name: terraform Apply
-        run: terraform apply -auto-approve -input=false
+      # - name: terraform Apply
+      #   run: terraform apply -auto-approve -input=false
 
-      - name: Costs calculations
-        run: infracost 
+      - name: Setup Infracost
+        uses: infracost/actions/setup@v2
+        # See https://github.com/infracost/actions/tree/master/setup for other inputs
+        # If you can't use this action, see Docker images in https://infracost.io/cicd
+        with:
+          api-key: ${{ secrets.INFRACOST_API_KEY }}
 
+      # Checkout the base branch of the pull request (e.g. main/master).
+      - name: Checkout base branch
+        uses: actions/checkout@v3
+        with:
+          ref: '${{ github.event.pull_request.base.ref }}'
+
+        # Checkout the current PR branch so we can create a diff.
+      - name: Checkout PR branch
+        uses: actions/checkout@v3
+
+      # Generate an Infracost diff and save it to a JSON file.
+      - name: Generate Infracost diff
+        run: |
+          infracost diff --path=./terraform-infra \
+                              --format=json \
+                              --compare-to=/tmp/infracost-base.json \
+                              --out-file=/tmp/infracost.json
+
+     # https://github.com/infracost/actions/tree/master/examples/terraform-project
+          
       - name: terraform Destroy
         run: terraform destroy -auto-approve
        
