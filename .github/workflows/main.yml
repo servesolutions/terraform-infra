@@ -103,6 +103,6 @@ jobs:
 
      # https://github.com/infracost/actions/tree/master/examples/terraform-project
           
-     # - name: terraform Destroy
-      #  run: terraform destroy -auto-approve
+      - name: terraform Destroy
+        run: terraform destroy -auto-approve
        
