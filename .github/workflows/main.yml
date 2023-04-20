@@ -73,8 +73,8 @@ jobs:
       - name: Terraform Plan 
         run: terraform plan -input=false
 
-      # - name: terraform Apply
-      #   run: terraform apply -auto-approve -input=false
+      - name: terraform Apply
+        run: terraform apply -auto-approve -input=false
 
       # - name: Setup Infracost
       #   uses: infracost/actions/setup@v2
@@ -103,6 +103,6 @@ jobs:
 
      # https://github.com/infracost/actions/tree/master/examples/terraform-project
           
-      - name: terraform Destroy
-        run: terraform destroy -auto-approve
+     # - name: terraform Destroy
+      #  run: terraform destroy -auto-approve
        
