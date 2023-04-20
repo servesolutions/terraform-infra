@@ -69,7 +69,7 @@ jobs:
           infracost diff --path=./terraform-infra \
                           --format= json \
                           --compare-to=./terraform-infra/infracost-base.json \
-                          --out-file=./terraform-infra/infracost.json
+                          --out-file=./terraform-infra/infracost-base.json
 
       # Posts a comment to the PR using the 'update' behavior.
       # This creates a single comment and updates it. The "quietest" option.
