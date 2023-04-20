@@ -1,0 +1,7 @@
+version: 0.1
+projects:
+  - path: ./terraform-infra/
+    name: servesolutions/terraform-infra
+    include_all_paths: true
+    terraform_var_files:
+      - terraform.tfvars
