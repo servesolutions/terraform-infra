@@ -1,11 +1,14 @@
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
 def print_board(board):
-    print("-------------")
-    print("| " + board[0][0] + " | " + board[0][1] + " | " + board[0][2] + " |")
-    print("-------------")
-    print("| " + board[1][0] + " | " + board[1][1] + " | " + board[1][2] + " |")
-    print("-------------")
-    print("| " + board[2][0] + " | " + board[2][1] + " | " + board[2][2] + " |")
-    print("-------------")
+    board_str = ""
+    for row in board:
+        board_str += "-------------\n"
+        board_str += "| {} | {} | {} |\n".format(row[0], row[1], row[2])
+    board_str += "-------------\n"
+    return board_str
 
 def check_win(board, player):
     # Check rows
@@ -23,26 +26,27 @@ def check_win(board, player):
         return True
     return False
 
-def main():
+@app.route("/", methods=["GET", "POST"])
+def play_game():
     board = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
     players = ["X", "O"]
     current_player = players[0]
-    while True:
-        print_board(board)
-        row = int(input("Enter row (1-3): ")) - 1
-        col = int(input("Enter column (1-3): ")) - 1
+    winner = None
+
+    if request.method == "POST":
+        row = int(request.form["row"])
+        col = int(request.form["col"])
         if board[row][col] == " ":
             board[row][col] = current_player
             if check_win(board, current_player):
-                print_board(board)
-                print(current_player + " wins!")
-                break
-            if current_player == players[0]:
-                current_player = players[1]
+                winner = current_player
             else:
-                current_player = players[0]
+                current_player = players[1] if current_player == players[0] else players[0]
         else:
             print("That spot is already taken. Please try again.")
+    
+    board_str = print_board(board)
+    return render_template("game.html", board=board_str, winner=winner)
 
 if __name__ == "__main__":
-    main()
+    app.run(debug=True, port=8001)
