@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build .  --tag tictactoe:$(date +%s)
+      run: docker build -t tictactoe:$(date +%s) .
       
     - name: Run Trivy vulnerability scanner
     - uses: aquasecurity/trivy-action@master
