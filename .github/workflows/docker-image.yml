@@ -15,12 +15,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build -t tictactoe:$(date +%s) .
+      run: docker build -t tictactoe:v1 .
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: 'tictactoe:$(date +%s)'
+        image-ref: 'tictactoe:v1'
         exit-code: '0'
         ignore-unfixed: true
         vuln-type: 'os,library'
