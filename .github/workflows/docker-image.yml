@@ -21,7 +21,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      DOCKER_REPOSITORY: serversolutions/terraform-infra # name of Docker Hub ID
+      DOCKER_REPOSITORY: servesolutions/terraform-infra # name of Docker Hub ID
       IMAGE_NAME: tictactoe
       IMAGE_TAG: ${{ github.run_number }} # $GITHUB_RUN_NUMBER
  
@@ -55,4 +55,4 @@ jobs:
 
     - name: Push Image to Docker Hub
       run:
-        docker push $DOCKER_REPOSITORY/$IMAGE_NAME:$IMAGE_TAG
+        docker push $DOCKER_REPOSITORY
