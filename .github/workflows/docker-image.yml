@@ -55,4 +55,4 @@ jobs:
 
     - name: Push Image to Docker Hub
       run:
-        docker push $DOCKER_REPOSITORY/$IMAGE_NAME
+        docker push $DOCKER_REPOSITORY/$IMAGE_NAME:${{ github.run_number }}
