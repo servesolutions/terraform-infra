@@ -82,6 +82,6 @@ jobs:
         run: 
             infracost comment github --path=/tmp/infracost.json \
                                      --repo=https://github.com/servesolutions/terraform-infra.git \
-                                     --github-token=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 \
+                                     --github-token=${{github.token}} \
                                      --pull-request=${{github.event.pull_request.number}} \
                                      --behavior=update
