@@ -73,8 +73,44 @@ jobs:
       - name: Terraform Plan 
         run: terraform plan -input=false
 
-      #- name: terraform Apply
-       # run: terraform apply -auto-approve -input=false
+
+      - name: Setup Infracost
+        uses: infracost/actions/setup@v2
+        # See https://github.com/infracost/actions/tree/master/setup for other inputs
+        # If you can't use this action, see Docker images in https://infracost.io/cicd
+        with:
+           api-key: ${{ secrets.INFRACOST_API_KEY }}
+
+      # Checkout the base branch of the pull request (e.g. main/master).
+      - name: Checkout base branch
+        uses: actions/checkout@v3
+        with:
+          ref: '${{ github.event.pull_request.base.ref }}'
+
+      # Generate Infracost JSON file as the baseline.
+      - name: Generate Infracost cost estimate baseline
+        run: |
+          infracost breakdown --path=./terraform-infra \
+                              --format=json \
+                              --out-file=/tmp/infracost-base.json
+
+      - name: terraform Apply
+        run: terraform apply -auto-approve -input=false
+
+      - name: Generate Infracost diff
+        run: |
+          infracost diff --path=./terraform-infra \
+                          --format=json \
+                          --compare-to=/tmp/infracost-base.json \
+                          --out-file=/tmp/infracost.json
+
+      - name: Post Infracost comment
+        run: 
+            infracost comment github --path=/tmp/infracost.json \
+                                     --repo=$GITHUB_REPOSITORY \
+                                     --github-token=${{ github.token }} \
+                                     --pull-request=${{ github.event.pull_request.number }} \
+                                     --behavior=update                   
 
       # - name: Setup Infracost
       #   uses: infracost/actions/setup@v2
